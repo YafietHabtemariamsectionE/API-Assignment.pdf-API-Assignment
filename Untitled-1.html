@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+     <h1> fetch api example</h1>   
+     <div class="container">
+     <div id="postdata"><em>Loading data ...</em></div>
+     <div id="postdata2" class="card"><em>Loading data ...</em></div> 
+    </div>
+     <button id="fetchButton">Fetch Image</button>
+
+     <script> 
+    document.getElementById('fetchButton').addEventListener('click', function() {
+        fetch('https://dog.ceo/api/breeds/image/random')
+        .then(Response => Response.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById('postdata').textContent = '';
+            document.getElementById('postdata2').textContent = '';
+            const img = document.createElement('img');
+            
+            img.src = data.message;
+            document.getElementById('postdata2').appendChild(img);
+        })
+        .catch(error => console.error('error fetching data', error));
+    });
+    </script>
+</body>
+</html>
